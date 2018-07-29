@@ -1,0 +1,18 @@
+table {
+  border-collapse: collapse;
+}
+
+table, td {
+  border: 1px solid black;
+}
+
+td {
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  background: white;
+}
+
+td.live {
+  background: green;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Conway's Game of Life in VueJS</title>
+  <link rel="stylesheet" type="text/css" href="./main.css">
+  <script src="./vue.min.js"></script>
+</head>
+<body>
+<div id="game_area">
+  <div id="input_area">
+    Number of rows and columns:
+    <input id="side_size" type="text">
+    <button id="submit" v-on:click="initialize">Create!</button>
+  </div>
+  <br>
+  <button v-show="side_size > 0" v-on:click="startGame">Start!</button>
+  <button v-show="side_size > 0" v-on:click="stopGame">Stop!</button>
+  <div v-show="turn > 0">
+    <span v-show="loop">Game is on going. </span>
+    <span v-show="!loop">Game is stopped. </span>
+    <span>Turn {{ turn }}</span>
+  </div>
+  <br v-show="turn <= 0">
+  <br>
+  <table v-if="side_size > 0">
+    <tr v-for="r in side_size">
+      <td v-for="c in side_size"
+          v-bind:id="r + '_' + c"
+          v-bind:class="{ live: state[r][c] }">
+      </td>
+    </tr>
+  </table>
+</div>
+
+<script src="./index.js"></script>
+</body>
+</html>
