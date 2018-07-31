@@ -7,6 +7,8 @@
 </head>
 <body>
 <div id="game_area">
+  <div>Game's rules: <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life</a></div>
+  <br>
   <div id="input_area">
     Number of rows and columns:
     <input id="side_size" type="text">
@@ -16,9 +18,12 @@
   <button v-show="side_size > 0" v-on:click="startGame">Start!</button>
   <button v-show="side_size > 0" v-on:click="stopGame">Stop!</button>
   <div v-show="turn > 0">
-    <span v-show="loop">Game is on going. </span>
+    <span v-show="loop">Game is on going. Green cells are live, white cells are dead. </span>
     <span v-show="!loop">Game is stopped. </span>
-    <span>Turn {{ turn }}</span>
+    <span>Current turn: {{ turn }}</span>
+  </div>
+  <div v-show="!loop && side_size > 0">
+    You can click cells to switch between live and dead.
   </div>
   <br v-show="turn <= 0">
   <br>
@@ -26,7 +31,8 @@
     <tr v-for="r in side_size">
       <td v-for="c in side_size"
           v-bind:id="r + '_' + c"
-          v-bind:class="{ live: state[r][c] }">
+          v-bind:class="{ live: state[r][c] }"
+          v-on:click="switchLife(r, c)">
       </td>
     </tr>
   </table>

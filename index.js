@@ -26,6 +26,10 @@ var game = new Vue({
       }
       this.side_size = side_size;
     },
+    switchLife: function(row, column) {
+      if (this.loop) return;
+      this.state[row][column] = !this.state[row][column];
+    },
     startGame: function() {
       if (this.loop) return;
 
