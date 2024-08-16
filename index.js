@@ -74,7 +74,7 @@ var game = new Vue({
           alert("Game over at turn " + game.turn.toString());
           game.loop = false;
         }
-      }, 2000);
+      }, 1000);
     },
     stopGame: function() {
       if (!this.loop) return;
